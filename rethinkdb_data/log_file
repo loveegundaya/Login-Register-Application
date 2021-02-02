@@ -1,0 +1,37 @@
+2021-01-29T05:30:40.387836380 0.019316s notice: Recursively removing directory /home/dna-developer/apps/login-register-app/rethinkdb_data/tmp
+2021-01-29T05:30:40.404855986 0.036338s notice: Initializing directory /home/dna-developer/apps/login-register-app/rethinkdb_data
+2021-01-29T05:30:40.405024558 0.036504s info: Creating a default database for your convenience. (This is because you ran 'rethinkdb' without 'create', 'serve', or '--join', and the directory '/home/dna-developer/apps/login-register-app/rethinkdb_data' did not already exist or is empty.)
+2021-01-29T05:30:40.405067489 0.036547s notice: Running rethinkdb 2.4.1 (CLANG 10.0.0 )...
+2021-01-29T05:30:40.408019432 0.039501s notice: Running on Linux 5.4.0-7634-generic x86_64
+2021-01-29T05:30:40.408099895 0.039579s notice: Loading data from directory /home/dna-developer/apps/login-register-app/rethinkdb_data
+2021-01-29T05:30:40.439352037 0.070832s info: Automatically using cache size of 5073 MB
+2021-01-29T05:30:40.440625223 0.072105s notice: Listening for intracluster connections on port 29015
+2021-01-29T05:30:40.442435411 0.073915s notice: Listening for client driver connections on port 28015
+2021-01-29T05:30:40.442495538 0.073975s notice: Listening for administrative HTTP connections on port 8080
+2021-01-29T05:30:40.442499987 0.073979s notice: Listening on cluster addresses: 127.0.0.1, ::1
+2021-01-29T05:30:40.442504152 0.073983s notice: Listening on driver addresses: 127.0.0.1, ::1
+2021-01-29T05:30:40.442508594 0.073988s notice: Listening on http addresses: 127.0.0.1, ::1
+2021-01-29T05:30:40.442512721 0.073992s notice: To fully expose RethinkDB on the network, bind to all addresses by running rethinkdb with the `--bind all` command line option.
+2021-01-29T05:30:40.442516776 0.073996s notice: Server ready, "devs_qj5" db10da37-ca1e-4067-b15d-64cee182456f
+2021-01-29T06:51:10.252221075 4829.883700s info: Table 600d7a29-ea7d-4a40-abd8-de870c7d9c9f: Starting a new Raft election for term 1.
+2021-01-29T06:51:10.252491568 4829.883971s info: Table 600d7a29-ea7d-4a40-abd8-de870c7d9c9f: Added replica on this server.
+2021-01-29T06:51:10.256398721 4829.887878s info: Table 600d7a29-ea7d-4a40-abd8-de870c7d9c9f: This server is Raft leader for term 1. Latest log index is 0.
+2021-02-02T00:35:34.784061018 0.028730s notice: Running rethinkdb 2.4.1 (CLANG 10.0.0 )...
+2021-02-02T00:35:34.786470454 0.031136s notice: Running on Linux 5.4.0-7634-generic x86_64
+2021-02-02T00:35:34.786539083 0.031203s notice: Loading data from directory /home/dna-developer/apps/login-register-app/rethinkdb_data
+2021-02-02T00:35:34.806087872 0.050752s info: Automatically using cache size of 5981 MB
+2021-02-02T00:35:34.807818565 0.052482s notice: Listening for intracluster connections on port 29015
+2021-02-02T00:35:34.822534237 0.067198s notice: Listening for client driver connections on port 28015
+2021-02-02T00:35:34.822742815 0.067407s notice: Listening for administrative HTTP connections on port 8080
+2021-02-02T00:35:34.822749493 0.067413s notice: Listening on cluster addresses: 127.0.0.1, ::1
+2021-02-02T00:35:34.822753029 0.067417s notice: Listening on driver addresses: 127.0.0.1, ::1
+2021-02-02T00:35:34.822758420 0.067422s notice: Listening on http addresses: 127.0.0.1, ::1
+2021-02-02T00:35:34.822763375 0.067427s notice: To fully expose RethinkDB on the network, bind to all addresses by running rethinkdb with the `--bind all` command line option.
+2021-02-02T00:35:34.822769747 0.067433s notice: Server ready, "devs_qj5" db10da37-ca1e-4067-b15d-64cee182456f
+2021-02-02T00:35:36.577055413 1.821719s info: Table 600d7a29-ea7d-4a40-abd8-de870c7d9c9f: Starting a new Raft election for term 2.
+2021-02-02T00:35:36.582985183 1.827649s info: Table 600d7a29-ea7d-4a40-abd8-de870c7d9c9f: This server is Raft leader for term 2. Latest log index is 3.
+2021-02-02T08:15:30.727877250 27595.972541s notice: Server got SIGINT from pid 0, uid 0; shutting down...
+2021-02-02T08:15:30.728026256 27595.972690s notice: Shutting down client connections...
+2021-02-02T08:15:30.728260546 27595.972925s notice: All client connections closed.
+2021-02-02T08:15:30.728268964 27595.972933s notice: Shutting down storage engine... (This may take a while if you had a lot of unflushed data in the writeback cache.)
+2021-02-02T08:15:30.734317350 27595.978981s notice: Storage engine shut down.
