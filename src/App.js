@@ -6,7 +6,7 @@ import {useState} from 'react'
 
 function App() {
 
-  const [component, setComponent] = useState("login")
+    const [component, setComponent] = useState("login")
     const [user, setUser] = useState(null)
 
     const handleLogInText =  () => {
@@ -22,6 +22,7 @@ function App() {
         {component === "dashboard" ?
           <Dashboard        
           user={user}
+          changeComponent={setComponent}
           />
           :
           <div class="form-structor" id="form-structor">

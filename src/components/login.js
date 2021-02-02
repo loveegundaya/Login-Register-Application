@@ -1,36 +1,51 @@
 import React, {useState} from 'react'
 import axios from 'axios'
-import '../App.css';
 
 function Login(props){
 
     const [username, setUsername]= useState("")
     const [password, setPassword]= useState("")
 
-    const handleLogInButton =  () => {
-        
-        if(username!==""&&password!==""){
-            const detail = {
-                username,
-                password
-            }
-            let message = ""
-            axios.post('/login',detail).then((response)=>{
-                message = response.data.message
-                if (message === 'Logged in successfully'){
-                    alert(response.data.message)
-                    props.changeUser(username)
-                    props.changeComponent("dashboard");
-                }
-                else if (message === 'Credentials not found!'){
-                    alert(response.data.message)
-                }
-            })
-        }
-        else {
+    const handleLogInButton = async () => {
+
+        if (username===""||password==="") {
             alert("Fields are incomplete!")
+            return
         }
 
+        const detail = {
+            username,
+            password
+        }
+
+        try {
+            const response = await axios.post('/login',detail)
+            if (response.data.success){
+                alert(response.data.message)
+                props.changeUser(username)
+                props.changeComponent("dashboard");
+            }
+            else {
+                alert(response.data.message)
+            }
+        } catch (e) {
+            alert('Error occured');
+        }
+
+        // axios.post('/login',detail)
+        //     .then((e)=>{
+        //         if (e.data.success){
+        //             alert(e.data.message)
+        //             props.changeUser(username)
+        //             props.changeComponent("dashboard");
+        //         }
+        //         else {
+        //             alert(e.data.message)
+        //         }
+        //     })
+        //     .catch(e=>{
+        //         alert(e.data.message)
+        //     })
 
     }
   

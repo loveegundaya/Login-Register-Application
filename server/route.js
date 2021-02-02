@@ -1,13 +1,11 @@
 
 module.exports = function(app){
 
-var express = require('express');
 const rethink = require("rethinkdb");
 let connection = null;
-const port = 9000;
 
 rethink.connect( {host: 'localhost', port: 28015, db: "UsersDB"}, function(err, conn) {
-    if (err) throw err;
+    if (err) { throw err;}
    connection = conn;
 })
 
@@ -25,36 +23,90 @@ app.get("/", (req, res) => {
 });
 
 app.post('/login',(req, res) => {
+
+    const {username, password} = req.body;
+
+    if (username===""||password===""){
+        res.send({
+            success: false,
+            message:"Fields are incomplete"
+        })
+        return
+    }
+
     rethink.table('users')
     .filter(rethink.row('username').eq(req.body.username))
     .filter(rethink.row('password').eq(req.body.password))
     .run(connection,(err,cursor)=>{
+        if (err) {
+            res.send({message:'Internal Server Error'})
+            return;
+        }
+
         cursor.toArray(function(err, result) {
             if (err) res.send({message:'Internal Server Error'});
             if(result.length>0){
-                res.send({message:'Logged in successfully'});
+                res.send({
+                    success: true,
+                    message:'Logged in successfully'});
             }else{
-                res.send({message:'Credentials not found!'});
+                res.send({
+                    success: false,
+                    message:'Credentials not found!'});
             }                
         });        
     })
 });
 
 app.post('/register',(req,res)=>{
+
+    const {username, password, confirm_password} = req.body;
+
+    if (username===""||password===""||confirm_password===""){
+        res.send({
+            success: false,
+            message:"Fields are incomplete"
+        })
+        return
+    }
+    else if ((confirm_password!==password)&&(confirm_password!==""&&password!=="")){
+        res.send({
+            success: false,
+            message:"Passwords mismatched"
+        })
+        return
+    }
+
     rethink.table('users')
     .filter(rethink.row('username').eq(req.body.username))
     .run(connection,(err,cursor)=>{
+        if (err) {
+            res.send({message:'Internal Server Error'})
+            return;
+        }
         cursor.toArray(function(err, result) {
-            if (err) res.send({message:'Internal Server Error'});
+            if (err) res.send({
+                success: false,
+                message:'Internal Server Error'
+            });
             if(result.length>0){
-                res.send({message:'Username already exists'});
+                res.send({
+                    success: false,
+                    message:'Username already exists'
+                });
             }
             else{
                 rethink.table('users').insert({
                     username:req.body.username,
                     password:req.body.password}).run(connection,(err,result)=>{
-                        if (err) res.send({message:'Internal Server Error'});
-                        if(result) res.send({message:'Registered Succesfully'});
+                        if (err) res.send({
+                            success: false,
+                            message:'Internal Server Error'
+                        });
+                        if(result) res.send({
+                            success: true,
+                            message:'Registered Succesfully'
+                        });
                         
                 })
             }

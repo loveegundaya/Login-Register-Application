@@ -10,4 +10,5 @@ app.use(bodyParser.json());
 Route(app);
 
 app.listen(port, () => {
+    console.log("Server running at port: ", port);
 });

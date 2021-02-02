@@ -35,3 +35,74 @@
 2021-02-02T08:15:30.728260546 27595.972925s notice: All client connections closed.
 2021-02-02T08:15:30.728268964 27595.972933s notice: Shutting down storage engine... (This may take a while if you had a lot of unflushed data in the writeback cache.)
 2021-02-02T08:15:30.734317350 27595.978981s notice: Storage engine shut down.
+2021-02-02T08:42:04.504170295 0.017429s notice: Running rethinkdb 2.4.1 (CLANG 10.0.0 )...
+2021-02-02T08:42:04.507237249 0.020494s notice: Running on Linux 5.4.0-7634-generic x86_64
+2021-02-02T08:42:04.507299682 0.020555s notice: Loading data from directory /home/dna-developer/apps/login-register-app/rethinkdb_data
+2021-02-02T08:42:04.526026976 0.039283s info: Automatically using cache size of 5348 MB
+2021-02-02T08:42:04.527108080 0.040364s notice: Listening for intracluster connections on port 29015
+2021-02-02T08:42:04.547113683 0.060370s notice: Listening for client driver connections on port 28015
+2021-02-02T08:42:04.549114956 0.062371s notice: Listening for administrative HTTP connections on port 8080
+2021-02-02T08:42:04.549155952 0.062412s notice: Listening on cluster addresses: 127.0.0.1, ::1
+2021-02-02T08:42:04.549159710 0.062415s notice: Listening on driver addresses: 127.0.0.1, ::1
+2021-02-02T08:42:04.549165486 0.062421s notice: Listening on http addresses: 127.0.0.1, ::1
+2021-02-02T08:42:04.549169687 0.062425s notice: To fully expose RethinkDB on the network, bind to all addresses by running rethinkdb with the `--bind all` command line option.
+2021-02-02T08:42:04.549176162 0.062432s notice: Server ready, "devs_qj5" db10da37-ca1e-4067-b15d-64cee182456f
+2021-02-02T08:42:05.689157430 1.202414s info: Table 600d7a29-ea7d-4a40-abd8-de870c7d9c9f: Starting a new Raft election for term 3.
+2021-02-02T08:42:05.695164053 1.208420s info: Table 600d7a29-ea7d-4a40-abd8-de870c7d9c9f: This server is Raft leader for term 3. Latest log index is 6.
+2021-02-03T00:27:56.231265953 0.034184s notice: Running rethinkdb 2.4.1 (CLANG 10.0.0 )...
+2021-02-03T00:27:56.233675743 0.036592s notice: Running on Linux 5.4.0-7634-generic x86_64
+2021-02-03T00:27:56.233726020 0.036641s notice: Loading data from directory /home/dna-developer/apps/login-register-app/rethinkdb_data
+2021-02-03T00:27:56.252703565 0.055619s info: Automatically using cache size of 5920 MB
+2021-02-03T00:27:56.257039969 0.059955s notice: Listening for intracluster connections on port 29015
+2021-02-03T00:27:56.273053158 0.075969s notice: Listening for client driver connections on port 28015
+2021-02-03T00:27:56.273125876 0.076041s notice: Listening for administrative HTTP connections on port 8080
+2021-02-03T00:27:56.273128991 0.076044s notice: Listening on cluster addresses: 127.0.0.1, ::1
+2021-02-03T00:27:56.273130946 0.076046s notice: Listening on driver addresses: 127.0.0.1, ::1
+2021-02-03T00:27:56.273135538 0.076051s notice: Listening on http addresses: 127.0.0.1, ::1
+2021-02-03T00:27:56.273137413 0.076053s notice: To fully expose RethinkDB on the network, bind to all addresses by running rethinkdb with the `--bind all` command line option.
+2021-02-03T00:27:56.273142010 0.076057s notice: Server ready, "devs_qj5" db10da37-ca1e-4067-b15d-64cee182456f
+2021-02-03T00:27:58.018897120 1.821813s info: Table 600d7a29-ea7d-4a40-abd8-de870c7d9c9f: Starting a new Raft election for term 4.
+2021-02-03T00:27:58.023228312 1.826144s info: Table 600d7a29-ea7d-4a40-abd8-de870c7d9c9f: This server is Raft leader for term 4. Latest log index is 9.
+2021-02-03T01:09:55.880887393 2519.683804s notice: Server got SIGINT from pid 0, uid 0; shutting down...
+2021-02-03T01:09:55.881114310 2519.684030s notice: Shutting down client connections...
+2021-02-03T01:09:55.881777879 2519.684694s notice: All client connections closed.
+2021-02-03T01:09:55.881804777 2519.684720s notice: Shutting down storage engine... (This may take a while if you had a lot of unflushed data in the writeback cache.)
+2021-02-03T01:09:55.894206457 2519.697122s notice: Storage engine shut down.
+2021-02-03T01:15:37.280833694 0.013602s notice: Running rethinkdb 2.4.1 (CLANG 10.0.0 )...
+2021-02-03T01:15:37.282297829 0.015065s notice: Running on Linux 5.4.0-7634-generic x86_64
+2021-02-03T01:15:37.282350394 0.015117s notice: Loading data from directory /home/dna-developer/apps/login-register-app/rethinkdb_data
+2021-02-03T01:15:37.293142563 0.025909s info: Automatically using cache size of 5500 MB
+2021-02-03T01:15:37.294244711 0.027011s notice: Listening for intracluster connections on port 29015
+2021-02-03T01:15:37.307520032 0.040287s notice: Listening for client driver connections on port 28015
+2021-02-03T01:15:37.307616467 0.040383s notice: Listening for administrative HTTP connections on port 8080
+2021-02-03T01:15:37.307676332 0.040442s notice: Listening on cluster addresses: 127.0.0.1, ::1
+2021-02-03T01:15:37.307687041 0.040453s notice: Listening on driver addresses: 127.0.0.1, ::1
+2021-02-03T01:15:37.307692394 0.040458s notice: Listening on http addresses: 127.0.0.1, ::1
+2021-02-03T01:15:37.307699712 0.040466s notice: To fully expose RethinkDB on the network, bind to all addresses by running rethinkdb with the `--bind all` command line option.
+2021-02-03T01:15:37.307705667 0.040472s notice: Server ready, "devs_qj5" db10da37-ca1e-4067-b15d-64cee182456f
+2021-02-03T01:15:39.177410367 1.910177s info: Table 600d7a29-ea7d-4a40-abd8-de870c7d9c9f: Starting a new Raft election for term 5.
+2021-02-03T01:15:39.182538299 1.915305s info: Table 600d7a29-ea7d-4a40-abd8-de870c7d9c9f: This server is Raft leader for term 5. Latest log index is 12.
+2021-02-03T01:19:45.952624602 248.685391s notice: Server got SIGINT from pid 0, uid 0; shutting down...
+2021-02-03T01:19:45.952869389 248.685636s notice: Shutting down client connections...
+2021-02-03T01:19:45.954262185 248.687029s notice: All client connections closed.
+2021-02-03T01:19:45.954287806 248.687054s notice: Shutting down storage engine... (This may take a while if you had a lot of unflushed data in the writeback cache.)
+2021-02-03T01:19:45.962024200 248.694791s notice: Storage engine shut down.
+2021-02-03T01:19:48.146164208 0.016801s notice: Running rethinkdb 2.4.1 (CLANG 10.0.0 )...
+2021-02-03T01:19:48.152042996 0.022673s notice: Running on Linux 5.4.0-7634-generic x86_64
+2021-02-03T01:19:48.152178608 0.022807s notice: Loading data from directory /home/dna-developer/apps/login-register-app/rethinkdb_data
+2021-02-03T01:19:48.171662682 0.042291s info: Automatically using cache size of 5486 MB
+2021-02-03T01:19:48.173407443 0.044036s notice: Listening for intracluster connections on port 29015
+2021-02-03T01:19:48.193156865 0.063785s notice: Listening for client driver connections on port 28015
+2021-02-03T01:19:48.193350162 0.063978s notice: Listening for administrative HTTP connections on port 8080
+2021-02-03T01:19:48.193355141 0.063983s notice: Listening on cluster addresses: 127.0.0.1, ::1
+2021-02-03T01:19:48.193361251 0.063989s notice: Listening on driver addresses: 127.0.0.1, ::1
+2021-02-03T01:19:48.193364749 0.063993s notice: Listening on http addresses: 127.0.0.1, ::1
+2021-02-03T01:19:48.193371822 0.064000s notice: To fully expose RethinkDB on the network, bind to all addresses by running rethinkdb with the `--bind all` command line option.
+2021-02-03T01:19:48.193377803 0.064006s notice: Server ready, "devs_qj5" db10da37-ca1e-4067-b15d-64cee182456f
+2021-02-03T01:19:49.810624418 1.681253s info: Table 600d7a29-ea7d-4a40-abd8-de870c7d9c9f: Starting a new Raft election for term 6.
+2021-02-03T01:19:49.817193431 1.687822s info: Table 600d7a29-ea7d-4a40-abd8-de870c7d9c9f: This server is Raft leader for term 6. Latest log index is 15.
+2021-02-03T06:43:29.868190975 19421.738820s notice: Server got SIGINT from pid 0, uid 0; shutting down...
+2021-02-03T06:43:29.868418659 19421.739047s notice: Shutting down client connections...
+2021-02-03T06:43:29.869674663 19421.740303s notice: All client connections closed.
+2021-02-03T06:43:29.869703208 19421.740331s notice: Shutting down storage engine... (This may take a while if you had a lot of unflushed data in the writeback cache.)
+2021-02-03T06:43:29.877446767 19421.748075s notice: Storage engine shut down.
