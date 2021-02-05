@@ -1,6 +1,8 @@
 function Dashboard(props){
 
     const handleLogOutButton = () => {
+      localStorage.setItem("username", "")
+      localStorage.setItem("component", "login")
       props.changeComponent("login")
     }
 

@@ -6,15 +6,17 @@ import {useState} from 'react'
 
 function App() {
 
-    const [component, setComponent] = useState("login")
-    const [user, setUser] = useState(null)
+    const [component, setComponent] = useState(localStorage.getItem("component")?localStorage.getItem("component"):"login")
+    const [user, setUser] = useState(localStorage.getItem("username")?localStorage.getItem("username"):"")
 
     const handleLogInText =  () => {
-        setComponent("login")
+      localStorage.setItem("component", "login")
+      setComponent("login")
     }
 
     const handleSignUpText =  () => {
-        setComponent("register")
+      localStorage.setItem("component", "login")
+      setComponent("register")
     }
 
     return(

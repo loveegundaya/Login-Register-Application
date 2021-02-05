@@ -5,11 +5,17 @@ function Login(props){
 
     const [username, setUsername]= useState("")
     const [password, setPassword]= useState("")
+    const [usernameError, setUsernameError]= useState(false)
+    const [passwordError, setPasswordError]= useState(false)
 
     const handleLogInButton = async () => {
 
-        if (username===""||password==="") {
-            alert("Fields are incomplete!")
+        if (username==="") {
+            setUsernameError(true)
+            return
+        }
+        if (password==="") {
+            setPasswordError(true)
             return
         }
 
@@ -22,6 +28,8 @@ function Login(props){
             const response = await axios.post('/login',detail)
             if (response.data.success){
                 alert(response.data.message)
+                localStorage.setItem("username", username)
+                localStorage.setItem("component", "dashboard")
                 props.changeUser(username)
                 props.changeComponent("dashboard");
             }
@@ -49,14 +57,31 @@ function Login(props){
 
     }
   
-    const handleUsernameInputChange = (e) => setUsername(e.target.value)
-    const handlePasswordInputChange= (e) => setPassword(e.target.value)
+    const handleUsernameInputChange = (e) => {
+        setUsername(e.target.value)
+        if (e.target.value!==""){
+            setUsernameError(false)
+        }
+    }
+    const handlePasswordInputChange= (e) => {
+        setPassword(e.target.value)
+        if (e.target.value!==""){
+            setPasswordError(false)
+        }
+    }
 
     return(
         <div>
             <div class="form-holder">
-            <input type="text" class="input" placeholder="Username" onChange={handleUsernameInputChange}/>
-                <input type="password" class="input" placeholder="Password" onChange={handlePasswordInputChange}/>
+
+                <div style={{display:"flex", alignItems:"center"}}>
+                    <input type="text" class="input" placeholder="Username" onChange={handleUsernameInputChange} />
+                    <span style={{color:"red"}}>{usernameError?"*":""}</span>
+                </div>
+                <div style={{display:"flex", alignItems:"center"}}>
+                    <input type="password" class="input" placeholder="Password" onChange={handlePasswordInputChange}/>
+                    <span style={{color:"red"}}>{passwordError?"*":""}</span>
+                </div>
             </div>
             <button class="submit-btn" onClick={handleLogInButton}>Log in</button>
         </div>
