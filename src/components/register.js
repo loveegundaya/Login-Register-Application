@@ -53,7 +53,6 @@ function Register(props){
     // })
 
   }
-
   const handleUsernameInputChange = (e) => {
       setUsername(e.target.value)
   }
