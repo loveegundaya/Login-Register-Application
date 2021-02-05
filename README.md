@@ -1,2 +1,3 @@
 # Login-Register-Application
-Technologies: 
+Technologies: React, Express and RethinkDB
+
