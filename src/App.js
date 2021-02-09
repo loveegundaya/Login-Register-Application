@@ -27,17 +27,17 @@ function App() {
           changeComponent={setComponent}
           />
           :
-          <div class="form-structor" id="form-structor">
-            <div class={component==="register"? 'signup':'signup slide-up'}>
-                <h2 class="form-title" id="signup" onClick={handleSignUpText}><span>or</span>Sign up</h2>
+          <div className="form-structor" id="form-structor">
+            <div className={component==="register"? 'signup':'signup slide-up'}>
+                <h2 className="form-title" id="signup" onClick={handleSignUpText}><span>or</span>Sign up</h2>
                 <Register
                   changeComponent={setComponent}
                   changeUser={setUser}
                 />
             </div>
-            <div class={component==="login"? 'login':'login slide-up'}>
-                <div class="center">
-                    <h2 class="form-title" id="login" onClick={handleLogInText}><span>or</span>Log in</h2>
+            <div className={component==="login"? 'login':'login slide-up'}>
+                <div className="center">
+                    <h2 className="form-title" id="login" onClick={handleLogInText}><span>or</span>Log in</h2>
                     <Login
                       changeComponent={setComponent}
                       changeUser={setUser}

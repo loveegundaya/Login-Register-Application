@@ -15,7 +15,7 @@ function Dashboard(props){
         <div style={style1}> 
           <br></br>
           <h1>Welcome {props.user}!</h1>
-          <button class="dashboard-btn" onClick={handleLogOutButton}>Log out</button>
+          <button className="dashboard-btn" onClick={handleLogOutButton}>Log out</button>
         </div>
       )
 }

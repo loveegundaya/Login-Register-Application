@@ -1,4 +1,3 @@
-
 const model = require("../model")
 
 module.exports = function(app){
@@ -15,8 +14,23 @@ module.exports = function(app){
             return
         }
 
-        let result = await model.login({username, password})
-        res.send(result)
+        try {
+            const cursor = await model.login({username, password})
+            const result = await cursor.toArray();  
+                if(result.length>0){
+                    res.send({
+                        success: true,
+                        message:'Logged in successfully'
+                    });
+                }else{
+                    res.send({
+                        success: false,
+                        message:'Credentials not found!'
+                    });                
+               }
+        } catch (error) {
+            res.send({message:'Internal Server Error'});
+        }
 
     });
 
@@ -37,13 +51,36 @@ module.exports = function(app){
             })
         }
 
-       let result = await model.register({username,password})
-       res.send(result)
+        try {
+            let cursor = await model.checkByUsername({username})
+            let isExists = await cursor.toArray()
+            if (isExists.length>0){
+                res.send({
+                    success: false,
+                    message:'Username already exists'
+                });
+            }
+            else{
+                let result = await model.register({username,password})
+                if(result){
+                        res.send({
+                            success: true,
+                            message:'Registered Succesfully'
+                        });
+                    }
+            }
+        } catch (error) {
+            res.send({message:'Internal Server Error'});
+        }
     });
 
 
     app.get("/clear", async (req, res) => {
-       let result = await model.clear()
-       res.send(result)
+        try {            
+            let result = await model.clear()
+            if(result) res.send({message:"Users Successfully Table Cleared"});
+        } catch (error) {
+            res.send({message:"Error in Clearing Users Table"});
+        }
     });
 }

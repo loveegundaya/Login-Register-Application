@@ -74,21 +74,21 @@ function Register(props){
 
   return(
       <div>
-          <div class="form-holder">
+          <div className="form-holder">
               <div style={{display:"flex", alignItems:"center"}}>
-                <input type="text" class="input" placeholder="Username" onChange={handleUsernameInputChange}/>
+                <input type="text" className="input" placeholder="Username" onChange={handleUsernameInputChange}/>
                 <span style={{color:"red"}}>{usernameError?"*":""}</span>
               </div>
               <div style={{display:"flex", alignItems:"center"}}>
-                <input type="password" class="input" placeholder="Password" onChange={handlePasswordInputChange}/>
+                <input type="password" className="input" placeholder="Password" onChange={handlePasswordInputChange}/>
                 <span style={{color:"red"}}>{passwordError?"*":""}</span>
               </div>
               <div style={{display:"flex", alignItems:"center"}}>
-                <input type="password" class="input" placeholder="Confirm Password" onChange={handleConfirmPasswordInputChange}/>
+                <input type="password" className="input" placeholder="Confirm Password" onChange={handleConfirmPasswordInputChange}/>
                 <span style={{color:"red"}}>{confirm_passwordError?"*":""}</span>
               </div>
           </div>
-          <button class="submit-btn" onClick={handleRegisterButton}>Sign up</button>
+          <button className="submit-btn" onClick={handleRegisterButton}>Sign up</button>
       </div>
       
   )
