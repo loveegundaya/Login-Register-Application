@@ -40,21 +40,6 @@ function Login(props){
             alert('Error occured');
         }
 
-        // axios.post('/login',detail)
-        //     .then((e)=>{
-        //         if (e.data.success){
-        //             alert(e.data.message)
-        //             props.changeUser(username)
-        //             props.changeComponent("dashboard");
-        //         }
-        //         else {
-        //             alert(e.data.message)
-        //         }
-        //     })
-        //     .catch(e=>{
-        //         alert(e.data.message)
-        //     })
-
     }
   
     const handleUsernameInputChange = (e) => {
