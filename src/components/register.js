@@ -36,6 +36,7 @@ function Register(props){
 
     try {
       const response = await axios.post('/register',detail)
+
       if (response.data.success){
         alert(response.data.message)
         localStorage.setItem("username", username)
