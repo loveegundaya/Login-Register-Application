@@ -35,12 +35,14 @@ module.exports={
             .run(await connection())
 
             let isExists = await cursor.toArray()
+
             if (isExists.length>0){
                 return {
                     success: false,
                     message:'Username already exists'
                 };
             }
+
             let result = await rethink.table('users').insert({
                 username:data.username,
                 password:data.password})
@@ -52,6 +54,7 @@ module.exports={
                     message:'Registered Succesfully'
                 };
             }
+            
         }catch(error){
             return {message:'Internal Server Error'};
         }

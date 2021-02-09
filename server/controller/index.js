@@ -17,6 +17,7 @@ module.exports = function(app){
 
         let result = await model.login({username, password})
         res.send(result)
+
     });
 
     app.post('/register',async (req,res)=>{
@@ -38,7 +39,6 @@ module.exports = function(app){
 
        let result = await model.register({username,password})
        res.send(result)
-
     });
 
 
