@@ -90,7 +90,6 @@ function Register(props){
           </div>
           <button className="submit-btn" onClick={handleRegisterButton}>Sign up</button>
       </div>
-      
   )
 }
 
