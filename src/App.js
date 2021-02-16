@@ -1,8 +1,10 @@
 import './App.css';
-import Dashboard from './components/dashboard'
+// import Dashboard from './components/dashboard'
 import Login from './components/login'
 import Register from './components/register'
 import {useState} from 'react'
+
+import Test from './components/test'
 
 function App() {
 
@@ -22,7 +24,7 @@ function App() {
     return(
       <div>
         {component === "dashboard" ?
-          <Dashboard        
+          <Test       
           user={user}
           changeComponent={setComponent}
           />

@@ -12,6 +12,27 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+.dashboard {
+  background-color: rgb(169, 218, 247);
+  border-radius: 15px;
+  height: 550px;
+  width: 350px;
+  position: relative;
+  overflow: hidden;
+}
+
+.dashboard::after {
+  content: "";
+  opacity: 1.0;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-repeat: no-repeat;
+  background-position: left bottom;
+  background-size: 500px;
+} 
 .form-structor {
   background-color: #222;
   border-radius: 15px;
@@ -20,6 +41,7 @@ body {
   position: relative;
   overflow: hidden;
 }
+
 .form-structor::after {
   content: "";
   opacity: 0.8;
