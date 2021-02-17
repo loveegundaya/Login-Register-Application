@@ -20,7 +20,8 @@ module.exports = function(app){
                 if(result.length>0){
                     res.send({
                         success: true,
-                        message:'Logged in successfully'
+                        message:'Logged in successfully',
+                        payload: result[0]
                     });
                 }else{
                     res.send({
@@ -65,7 +66,8 @@ module.exports = function(app){
                 if(result){
                         res.send({
                             success: true,
-                            message:'Registered Succesfully'
+                            message:'Registered Succesfully',
+                            payload: result
                         });
                     }
             }
@@ -75,12 +77,75 @@ module.exports = function(app){
     });
 
 
-    app.get("/clear", async (req, res) => {
+    app.get("/clear_user", async (req, res) => {
         try {            
-            let result = await model.clear()
+            let result = await model.clearUser()
             if(result) res.send({message:"Users Successfully Table Cleared"});
         } catch (error) {
             res.send({message:"Error in Clearing Users Table"});
         }
+    });
+
+    app.get("/clear_task", async (req, res) => {
+        try {            
+            let result = await model.clearTask()
+            if(result) res.send({message:"Tasks Successfully Table Cleared"});
+        } catch (error) {
+            res.send({message:"Error in Clearing Users Table"});
+        }
+    });
+
+    app.post("/get_tasks", async (req, res) => {
+
+        const {userID} = req.body;
+
+        try {            
+            let cursor = await model.getTasks({userID})
+            let tasks = await cursor.toArray()
+            if (tasks.length>0){
+                res.send({
+                    success: false,
+                    message:'Tasks read successfully',
+                    payload: tasks
+                });
+            }
+
+            else{
+                res.send({
+                    success: true,
+                    message:'Nothing to show',
+                });
+            }
+        } catch (error) {
+            res.send({message:"Error in Getting Tasks"});
+        }
+    });
+
+    app.post('/add-task', async (req, res) => {
+
+        const {userID,user, task} = req.body;
+    
+        if (task===""){
+            res.send({
+                success: false,
+                message:"Fields are incomplete"
+            })
+            return
+        }
+
+        try {
+
+            let result = await model.addTask({userID,user,task})
+            if(result){
+                    res.send({
+                        success: true,
+                        message:'Task Added Succesfully'
+                    });
+                }
+
+        } catch (error) {
+            res.send({message:'Internal server error'});
+        }
+
     });
 }

@@ -27,10 +27,17 @@ function Login(props){
         try {
             const response = await axios.post('/login',detail)
             if (response.data.success){
-                alert(response.data.message)
                 localStorage.setItem("username", username)
                 localStorage.setItem("component", "dashboard")
+                props.changeUserID(response.data.payload.id)
                 props.changeUser(username)
+
+                // let userID = response.data.payload.id
+                // let requirement = {userID}
+                // let result = await axios.post('/get_tasks', requirement)
+                // let todolist = result.data.payload
+                // props.setToDoList(todolist)
+
                 props.changeComponent("dashboard");
             }
             else {

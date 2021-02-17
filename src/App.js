@@ -10,6 +10,8 @@ function App() {
 
     const [component, setComponent] = useState(localStorage.getItem("component")?localStorage.getItem("component"):"login")
     const [user, setUser] = useState(localStorage.getItem("username")?localStorage.getItem("username"):"")
+    const [userID, setUserID] = useState("")
+    // const [todoList, setToDoList]= useState([])
 
     const handleLogInText =  () => {
       localStorage.setItem("component", "login")
@@ -26,6 +28,9 @@ function App() {
         {component === "dashboard" ?
           <Test       
           user={user}
+          userID={userID}
+          // todoList={todoList}
+          // setToDoList={setToDoList}
           changeComponent={setComponent}
           />
           :
@@ -34,6 +39,8 @@ function App() {
                 <h2 className="form-title" id="signup" onClick={handleSignUpText}><span>or</span>Sign up</h2>
                 <Register
                   changeComponent={setComponent}
+                  userID={userID}
+                  changeUserID={setUserID}
                   changeUser={setUser}
                 />
             </div>
@@ -42,7 +49,11 @@ function App() {
                     <h2 className="form-title" id="login" onClick={handleLogInText}><span>or</span>Log in</h2>
                     <Login
                       changeComponent={setComponent}
+                      userID={userID}
+                      changeUserID={setUserID}
                       changeUser={setUser}
+                      // todoList={todoList}
+                      // setToDoList={setToDoList}
                     />
                 </div>
             </div>
