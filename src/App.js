@@ -1,17 +1,14 @@
 import './App.css';
-// import Dashboard from './components/dashboard'
+import Dashboard from './components/dashboard'
 import Login from './components/login'
 import Register from './components/register'
 import {useState} from 'react'
-
-import Test from './components/test'
 
 function App() {
 
     const [component, setComponent] = useState(localStorage.getItem("component")?localStorage.getItem("component"):"login")
     const [user, setUser] = useState(localStorage.getItem("username")?localStorage.getItem("username"):"")
-    const [userID, setUserID] = useState("")
-    // const [todoList, setToDoList]= useState([])
+    const [userID, setUserID] = useState(localStorage.getItem("userID")?localStorage.getItem("userID"):"")
 
     const handleLogInText =  () => {
       localStorage.setItem("component", "login")
@@ -26,11 +23,9 @@ function App() {
     return(
       <div>
         {component === "dashboard" ?
-          <Test       
+          <Dashboard      
           user={user}
           userID={userID}
-          // todoList={todoList}
-          // setToDoList={setToDoList}
           changeComponent={setComponent}
           />
           :
@@ -52,8 +47,6 @@ function App() {
                       userID={userID}
                       changeUserID={setUserID}
                       changeUser={setUser}
-                      // todoList={todoList}
-                      // setToDoList={setToDoList}
                     />
                 </div>
             </div>

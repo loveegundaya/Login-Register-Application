@@ -11,12 +11,11 @@ function Login(props){
     const handleLogInButton = async () => {
 
         if (username==="") {
-            setUsernameError(true)
-            return
+            return setUsernameError(true)
         }
+
         if (password==="") {
-            setPasswordError(true)
-            return
+            return setPasswordError(true)
         }
 
         const detail = {
@@ -29,15 +28,10 @@ function Login(props){
             if (response.data.success){
                 localStorage.setItem("username", username)
                 localStorage.setItem("component", "dashboard")
+                localStorage.setItem("userID", response.data.payload.id)
+
                 props.changeUserID(response.data.payload.id)
                 props.changeUser(username)
-
-                // let userID = response.data.payload.id
-                // let requirement = {userID}
-                // let result = await axios.post('/get_tasks', requirement)
-                // let todolist = result.data.payload
-                // props.setToDoList(todolist)
-
                 props.changeComponent("dashboard");
             }
             else {
@@ -55,6 +49,7 @@ function Login(props){
             setUsernameError(false)
         }
     }
+    
     const handlePasswordInputChange= (e) => {
         setPassword(e.target.value)
         if (e.target.value!==""){

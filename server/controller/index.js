@@ -3,9 +3,7 @@ const model = require("../model")
 module.exports = function(app){
 
     app.post('/login', async (req, res) => {
-
         const {username, password} = req.body;
-    
         if (username===""||password===""){
             res.send({
                 success: false,
@@ -13,22 +11,21 @@ module.exports = function(app){
             })
             return
         }
-
         try {
             const cursor = await model.login({username, password})
             const result = await cursor.toArray();  
-                if(result.length>0){
-                    res.send({
-                        success: true,
-                        message:'Logged in successfully',
-                        payload: result[0]
-                    });
-                }else{
-                    res.send({
-                        success: false,
-                        message:'Credentials not found!'
-                    });                
-               }
+            if(result.length>0){
+                res.send({
+                    success: true,
+                    message:'Logged in successfully',
+                    payload: result[0]
+                });
+            }else{
+                res.send({
+                    success: false,
+                    message:'Credentials not found!'
+                });                
+            }
         } catch (error) {
             res.send({message:'Internal Server Error'});
         }
@@ -36,9 +33,7 @@ module.exports = function(app){
     });
 
     app.post('/register',async (req,res)=>{
-    
         const {username, password, confirm_password} = req.body;
-    
         if (username===""||password===""||confirm_password===""){
             res.send({
                 success: false,
@@ -51,7 +46,6 @@ module.exports = function(app){
                 message:"Passwords mismatched"
             })
         }
-
         try {
             let cursor = await model.checkByUsername({username})
             let isExists = await cursor.toArray()
@@ -64,18 +58,17 @@ module.exports = function(app){
             else{
                 let result = await model.register({username,password})
                 if(result){
-                        res.send({
-                            success: true,
-                            message:'Registered Succesfully',
-                            payload: result
-                        });
-                    }
+                    res.send({
+                        success: true,
+                        message:'Registered Succesfully',
+                        payload: result
+                    });
+                }
             }
         } catch (error) {
             res.send({message:'Internal Server Error'});
         }
     });
-
 
     app.get("/clear_user", async (req, res) => {
         try {            
@@ -96,9 +89,7 @@ module.exports = function(app){
     });
 
     app.post("/get_tasks", async (req, res) => {
-
         const {userID} = req.body;
-
         try {            
             let cursor = await model.getTasks({userID})
             let tasks = await cursor.toArray()
@@ -109,7 +100,6 @@ module.exports = function(app){
                     payload: tasks
                 });
             }
-
             else{
                 res.send({
                     success: true,
@@ -122,9 +112,7 @@ module.exports = function(app){
     });
 
     app.post('/add-task', async (req, res) => {
-
         const {userID,user, task} = req.body;
-    
         if (task===""){
             res.send({
                 success: false,
@@ -132,20 +120,51 @@ module.exports = function(app){
             })
             return
         }
-
         try {
 
             let result = await model.addTask({userID,user,task})
             if(result){
                     res.send({
                         success: true,
-                        message:'Task Added Succesfully'
+                        message:'Task Added Succesfully',
+                        payload: result
+                    });
+                }
+        } catch (error) {
+            res.send({message:'Internal server error'});
+        }
+    });
+
+    app.post('/delete_task', async (req, res) => {
+        const {id} = req.body;
+        try {
+
+            let result = await model.deleteTask({id})
+            if(result){
+                    res.send({
+                        success: true,
+                        message:'Task Deleted Succesfully'
                     });
                 }
 
         } catch (error) {
             res.send({message:'Internal server error'});
         }
+    });
 
+    app.post('/update_task', async (req, res) => {
+        const {id,taskUpdate} = req.body;
+        try {
+            let result = await model.updateTask({id,taskUpdate})
+            if(result){
+                    res.send({
+                        success: true,
+                        message:'Task Updated Succesfully'
+                    });
+                }
+
+        } catch (error) {
+            res.send({message:'Internal server error'});
+        }
     });
 }
