@@ -2,17 +2,32 @@ const model = require("../model")
 
 module.exports = function(app){
 
-    app.post('/login', async (req, res) => {
-        const {username, password} = req.body;
-        if (username===""||password===""){
-            res.send({
-                success: false,
-                message:"Fields are incomplete"
-            })
-            return
+    app.get('/get_all_users', async (req, res) => {
+        try {            
+            let result = await model.getAllUsers()
+            let users = await result.toArray()
+            if (users.length>0){
+                res.send({
+                    success: false,
+                    message:'Users read successfully',
+                    payload: users
+                });
+            }
+            else{
+                res.send({
+                    success: true,
+                    message:'Nothing to show',
+                });
+            }
+        } catch (error) {
+            res.send({message:"Error in Getting Users"});
         }
+    })
+
+    app.post('/login', async (req, res) => {
+        const {userid} = req.body;
         try {
-            const cursor = await model.login({username, password})
+            const cursor = await model.login({userid})
             const result = await cursor.toArray();  
             if(result.length>0){
                 res.send({
@@ -29,25 +44,24 @@ module.exports = function(app){
         } catch (error) {
             res.send({message:'Internal Server Error'});
         }
-
     });
 
     app.post('/register',async (req,res)=>{
-        const {username, password, confirm_password} = req.body;
-        if (username===""||password===""||confirm_password===""){
+        const {registerUsername, registerPassword, registerConfirmPassword} = req.body;
+        if (registerUsername===""||registerPassword===""||registerConfirmPassword===""){
             res.send({
                 success: false,
                 message:"Fields are incomplete"
             })
         }
-        else if ((confirm_password!==password)&&(confirm_password!==""&&password!=="")){
+        else if ((registerPassword!==registerConfirmPassword)&&(registerPassword!==""&&registerConfirmPassword!=="")){
             res.send({
                 success: false,
                 message:"Passwords mismatched"
             })
         }
         try {
-            let cursor = await model.checkByUsername({username})
+            let cursor = await model.checkByUsername({registerUsername})
             let isExists = await cursor.toArray()
             if (isExists.length>0){
                 res.send({
@@ -56,7 +70,7 @@ module.exports = function(app){
                 });
             }
             else{
-                let result = await model.register({username,password})
+                let result = await model.register({registerUsername,registerPassword})
                 if(result){
                     res.send({
                         success: true,
@@ -89,6 +103,7 @@ module.exports = function(app){
     });
 
     app.post("/get_tasks", async (req, res) => {
+
         const {userID} = req.body;
         try {            
             let cursor = await model.getTasks({userID})
