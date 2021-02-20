@@ -25,22 +25,15 @@ module.exports = function(app){
     })
 
     app.post('/login', async (req, res) => {
-        const {userid} = req.body;
+        const {userid} = req.body; 
         try {
             const cursor = await model.login({userid})
             const result = await cursor.toArray();  
-            if(result.length>0){
-                res.send({
-                    success: true,
-                    message:'Logged in successfully',
-                    payload: result[0]
-                });
-            }else{
-                res.send({
-                    success: false,
-                    message:'Credentials not found!'
-                });                
-            }
+            res.send({
+                success: true,
+                message:'Logged in successfully',
+                payload: result[0]
+            });
         } catch (error) {
             res.send({message:'Internal Server Error'});
         }
@@ -101,7 +94,7 @@ module.exports = function(app){
             res.send({message:"Error in Clearing Users Table"});
         }
     });
-
+    
     app.post("/get_tasks", async (req, res) => {
 
         const {userID} = req.body;

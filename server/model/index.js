@@ -70,11 +70,12 @@ module.exports={
         }
         
     },
-
+    
     getTasks: async ({userID}) => {
         try {
             let cursor = await rethink.table('tasks')
             .filter(rethink.row('userID').eq(userID))
+            .orderBy(rethink.desc('taskAdded'))
             .run(await connection())
             return cursor;
         } catch (error) {
@@ -88,7 +89,7 @@ module.exports={
                 userID:userID,
                 username:user,
                 task:task,
-                status: "unfulfilled"
+                taskAdded: new Date(),
                 })
                 .run(await connection())
             return result;

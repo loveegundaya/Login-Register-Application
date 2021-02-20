@@ -36,15 +36,21 @@ class App extends Component {
 
     fetchData = async () => {
       const {userID} = this.state
-      let result = await axios.post('/get_tasks', {userID})
-      let todolist = result.data.payload
-      let users = await axios.get('/get_all_users')
-      let userlist = users.data.payload
-      this.setState({...this.state, todoList: todolist, userList: userlist})
+      const result = await axios.post('/get_tasks', {userID})
+      const todolist = result.data.payload
+      
+      this.setState({...this.state, todoList: todolist})
+    }
+
+    fetchUsers = async () => {
+      const users = await axios.get('/get_all_users')
+      const userlist = users.data.payload
+      this.setState({...this.state, userList: userlist})
     }
 
     componentDidMount(){
       this.fetchData();
+      this.fetchUsers();
     }
 
     handleLogInText =  () => {
@@ -73,35 +79,38 @@ class App extends Component {
 
     handleLogInButton = async () => {
       
-      const {loginUsername,loginPassword,loginUsernameError,loginPasswordError, userList}= this.state
+      const {loginUsername,loginPassword, userList}= this.state
       if (loginUsername==="") {
         return this.setState({...this.state, loginUsernameError: true})
       }
       if (loginPassword==="") {
         return this.setState({...this.state, loginPasswordError: true})
       }
-      
+
       const userFound = userList.find((element) => element.username===loginUsername && element.password===loginPassword)
-      const {id:userid} = userFound
+      
+      if (!userFound){
+        return alert('Credentials not found!')
+      }
+
+      const userid = userFound.id
       const detail = {userid}
 
-      if(!loginUsernameError&&!loginPasswordError){
-        try {
-          const response = await axios.post('/login',detail)
-          if (response.data.success){
-              localStorage.setItem("username", loginUsername)
-              localStorage.setItem("component", "dashboard")
-              localStorage.setItem("userID", response.data.payload.id)
-              this.setState({...this.state, userID: response.data.payload.id})
-              this.setState({...this.state, user: loginUsername})
-              this.setState({...this.state, component: "dashboard"})
-          }
-          else {
-              alert(response.data.message)
-          }
-        } catch (e) {
-            alert('Error occured');
+      try {
+        const response = await axios.post('/login',detail)
+        if (response.data.success){
+            localStorage.setItem("username", loginUsername)
+            localStorage.setItem("component", "dashboard")
+            localStorage.setItem("userID", userid)
+            this.setState({...this.state, userID: userid})
+            this.setState({...this.state, user: loginUsername})
+            this.setState({...this.state, component: "dashboard"})
         }
+        else {
+            alert(response.data.message)
+        }
+      } catch (e) {
+          alert('Error occured');
       }
     }
 
