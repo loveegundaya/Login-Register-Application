@@ -1,125 +1,81 @@
+const { logDOM } = require("@testing-library/react");
 const rethink = require("rethinkdb");
 var connection = require("../connection");
 
-module.exports={
+module.exports = {
 
-    getAllUsers: async () => {
-        try {
-            let cursor = await rethink.table('users')
+    login: async ({ loginUsername }) => {
+        const cursor = await rethink.table('users')
+            .filter(rethink.row('username').eq(loginUsername))
+            .coerceTo('array')
             .run(await connection())
-            return cursor;
-        } catch (error) {
-            return {message:'Internal Server Error'};
-        }
+        return cursor
     },
 
-    login: async ({userid}) => {
-        try{
-            let cursor= await rethink.table('users')
-            .filter(rethink.row('id').eq(userid))
-            .run(await connection())
-            return cursor;
-        }catch(error){
-            return {message:'Internal Server Error'};
-        }
-    },
-
-    checkByUsername: async ({registerUsername}) => {
-        try {
-            let cursor = await rethink.table('users')
+    checkByUsername: async ({ registerUsername }) => {
+        const cursor = await rethink.table('users')
             .filter(rethink.row('username').eq(registerUsername))
             .run(await connection())
-            return cursor;
-        } catch (error) {
-            return {message:'Internal Server Error'};
-        }
+        return cursor;
     },
 
-    register: async ({registerUsername,registerPassword}) => {
-        try{
-            let result = await rethink.table('users').insert({
-                username:registerUsername,
-                password:registerPassword})
-                .run(await connection())
-                return result;
-        }catch(error){
-            return {message:'Internal Server Error'};
-        }
+    register: async ({ registerUsername, registerPassword }) => {
+        const cursor = await rethink.table('users')
+            .insert({
+                username: registerUsername,
+                password: registerPassword
+            })
+            .run(await connection())
+        return cursor;
     },
 
     clearUser: async () => {
-        try {
-            const result = await rethink.table('users')
+        const cursor = await rethink.table('users')
             .delete()
             .run(await connection())
-            return result;
-        } catch (error) {
-            return {message:"Error in Clearing Users Table"}
-        }
-        
+        return cursor;
     },
 
     clearTask: async () => {
-        try {
-            const result = await rethink.table('tasks')
+        const cursor = await rethink.table('tasks')
             .delete()
             .run(await connection())
-            return result;
-        } catch (error) {
-            return {message:"Error in Clearing Users Table"}
-        }
-        
+        return cursor;
     },
-    
-    getTasks: async ({userID}) => {
-        try {
-            let cursor = await rethink.table('tasks')
+
+    getTasks: async ({ userID }) => {
+        const cursor = await rethink.table('tasks')
             .filter(rethink.row('userID').eq(userID))
             .orderBy(rethink.desc('taskAdded'))
             .run(await connection())
-            return cursor;
-        } catch (error) {
-            return {message:'Internal Server Error'};
-        }
+        return cursor;
     },
 
-    addTask: async ({userID,user,task}) => {
-        try {
-            let result = await rethink.table('tasks').insert({
-                userID:userID,
-                username:user,
-                task:task,
+    addTask: async ({ userID, user, task }) => {
+        const cursor = await rethink.table('tasks')
+            .insert({
+                userID: userID,
+                username: user,
+                task: task,
                 taskAdded: new Date(),
-                })
-                .run(await connection())
-            return result;
-        } catch (error) {
-            return {message:"Error in Adding Task"}
-        }
-        
+            })
+            .run(await connection())
+        return cursor;
     },
 
-    deleteTask: async ({id}) => {
-        try {
-            let result = await rethink.table('tasks')
+    deleteTask: async ({ id }) => {
+        const cursor = await rethink.table('tasks')
             .get(id)
             .delete()
             .run(await connection())
-            return result;
-        } catch (error) {
-            return {message:"Error in Adding Task"}
-        }
+        return cursor;
     },
 
-    updateTask: async ({id,taskUpdate}) => {
-        try {
-            let result = await rethink.table('tasks')
+    updateTask: async ({ id, taskUpdate }) => {
+        const cursor = await rethink.table('tasks')
             .get(id)
-            .update({task:taskUpdate})
+            .update({ task: taskUpdate })
             .run(await connection())
-            return result;
-        } catch (error) {
-            return {message:"Error in Adding Task"}
-        }
+        return cursor;
     },
 }
